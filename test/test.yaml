@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  labels:
+    app: test
+spec:
+  containers:
+  - name: command-demo-container
+    image: jaehyeonlee/chc:0.4
+    command: ["/usr/local/bin/change_hpa_container"]
+    args: ["-ns", "test", "-dep_name", "php-nginx", "-min_rep", "1", "-max_rep", "2", "-max_cpu_set", "50"]
+  serviceAccountName: test-sa    
+  restartPolicy: Never
